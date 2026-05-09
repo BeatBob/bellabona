@@ -46,9 +46,17 @@ export const homepageQuery = groq`
 export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0]{
     siteName,
-    logo${imageProjection},
+    logoHeader${imageProjection},
+    logoFooter${imageProjection},
     navLinks[]{ label, href, children[]{ label, href } },
     headerCta,
+    headerSecondaryCta,
+    footerSocial{
+      heading,
+      body,
+      email,
+      links[]{ platform, href, label }
+    },
     footerColumns[]{
       heading,
       links[]{ label, href }

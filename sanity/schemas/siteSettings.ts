@@ -19,10 +19,18 @@ export const siteSettings = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'logo',
-      title: 'Logo',
+      name: 'logoHeader',
+      title: 'Logo — Header',
       type: 'imageWithAlt',
       group: 'identity',
+      description: 'Shown in the top navigation. Falls back to the site name wordmark if empty.',
+    }),
+    defineField({
+      name: 'logoFooter',
+      title: 'Logo — Footer',
+      type: 'imageWithAlt',
+      group: 'identity',
+      description: 'Shown as the giant decorative mark at the bottom of the footer. Falls back to the site name wordmark if empty.',
     }),
 
     defineField({
@@ -88,12 +96,76 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: 'headerSecondaryCta',
+      title: 'Header secondary link',
+      type: 'cta',
+      group: 'navigation',
+      description: 'Optional underlined text link shown to the left of the primary CTA (e.g. "Download menu").',
+    }),
+    defineField({
       name: 'headerCta',
       title: 'Header CTA',
       type: 'cta',
       group: 'navigation',
     }),
 
+    defineField({
+      name: 'footerSocial',
+      title: 'Footer — social block',
+      type: 'object',
+      group: 'footer',
+      description: 'First footer column: heading, intro text, contact email, and social/app icons.',
+      fields: [
+        defineField({ name: 'heading', title: 'Heading', type: 'string' }),
+        defineField({ name: 'body', title: 'Intro text', type: 'text', rows: 2 }),
+        defineField({ name: 'email', title: 'Contact email', type: 'string' }),
+        defineField({
+          name: 'links',
+          title: 'Icon links',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'platform',
+                  title: 'Platform',
+                  type: 'string',
+                  options: {
+                    list: [
+                      { title: 'Google', value: 'google' },
+                      { title: 'Twitter / X', value: 'twitter' },
+                      { title: 'Instagram', value: 'instagram' },
+                      { title: 'LinkedIn', value: 'linkedin' },
+                      { title: 'Facebook', value: 'facebook' },
+                      { title: 'YouTube', value: 'youtube' },
+                      { title: 'TikTok', value: 'tiktok' },
+                      { title: 'Apple App Store', value: 'apple' },
+                      { title: 'Google Play', value: 'googleplay' },
+                    ],
+                  },
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: 'href',
+                  title: 'Link',
+                  type: 'url',
+                  validation: (Rule) =>
+                    Rule.required().uri({ scheme: ['http', 'https', 'mailto'] }),
+                }),
+                defineField({
+                  name: 'label',
+                  title: 'Visible label (optional)',
+                  type: 'string',
+                  description: 'If set, renders next to the icon (e.g. "LinkedIn").',
+                }),
+              ],
+              preview: { select: { title: 'platform', subtitle: 'href' } },
+            }),
+          ],
+        }),
+      ],
+    }),
     defineField({
       name: 'footerColumns',
       title: 'Footer columns',
@@ -176,6 +248,59 @@ export const siteSettings = defineType({
           type: 'array',
           description: 'Powers the JSON-LD "sameAs" array.',
           of: [defineArrayMember({ type: 'url' })],
+        }),
+        defineField({
+          name: 'address',
+          title: 'Address',
+          type: 'object',
+          description: 'Emitted as PostalAddress in JSON-LD. Strong local-SEO signal.',
+          fields: [
+            defineField({ name: 'streetAddress', title: 'Street address', type: 'string' }),
+            defineField({ name: 'postalCode', title: 'Postal code', type: 'string' }),
+            defineField({ name: 'addressLocality', title: 'City', type: 'string' }),
+            defineField({
+              name: 'addressRegion',
+              title: 'Region / state',
+              type: 'string',
+              description: 'ISO 3166-2 region code (e.g. "BY" for Bavaria).',
+            }),
+            defineField({
+              name: 'addressCountry',
+              title: 'Country',
+              type: 'string',
+              description: 'ISO 3166-1 alpha-2 (e.g. "DE").',
+            }),
+          ],
+        }),
+        defineField({
+          name: 'contactPoint',
+          title: 'Contact point',
+          type: 'object',
+          description: 'Emitted as ContactPoint in JSON-LD. Useful for B2B SERP surfaces.',
+          fields: [
+            defineField({ name: 'email', title: 'Email', type: 'string' }),
+            defineField({ name: 'telephone', title: 'Telephone', type: 'string' }),
+            defineField({
+              name: 'contactType',
+              title: 'Contact type',
+              type: 'string',
+              description: 'e.g. "sales", "customer support".',
+            }),
+            defineField({
+              name: 'areaServed',
+              title: 'Area served',
+              type: 'array',
+              description: 'ISO country codes, e.g. ["DE"].',
+              of: [defineArrayMember({ type: 'string' })],
+            }),
+            defineField({
+              name: 'availableLanguage',
+              title: 'Available languages',
+              type: 'array',
+              description: 'BCP 47 codes, e.g. ["en", "de"].',
+              of: [defineArrayMember({ type: 'string' })],
+            }),
+          ],
         }),
       ],
     }),

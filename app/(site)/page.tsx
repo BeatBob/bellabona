@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Script from 'next/script'
 
 import { Features } from '../../components/sections/Features'
-import { FinalCta } from '../../components/sections/FinalCta'
 import { Hero } from '../../components/sections/Hero'
 import { LogoBar } from '../../components/sections/LogoBar'
 import { getHomepage, getSiteSettings } from '../../lib/data'
@@ -73,7 +72,6 @@ export default async function HomePage() {
       )}
       {homepage?.logoBar?.logos?.length ? <LogoBar data={homepage.logoBar} /> : null}
       {homepage?.features?.items?.length ? <Features data={homepage.features} /> : null}
-      {homepage?.finalCta?.heading ? <FinalCta data={homepage.finalCta} /> : null}
     </>
   )
 }

@@ -9,7 +9,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-brand-green text-brand-cream rounded-xl hover:bg-brand-dark active:translate-y-px',
+    'bg-brand-green text-white rounded-full hover:bg-brand-dark active:translate-y-px',
   secondary:
     'bg-brand-cream text-brand-green border border-brand-green rounded-xl hover:bg-brand-cream-2 active:translate-y-px',
   tertiary:
@@ -48,33 +48,27 @@ function isExternal(href: string) {
 }
 
 export function Button(props: LinkProps | NativeButtonProps) {
-  const { variant = 'primary', size = 'md', className, children } = props
+  const { variant = 'primary', size = 'md', className, children, ...rest } = props
+  const cls = classes(variant, size, className)
 
-  if ('href' in props && props.href) {
-    const { href, ...rest } = props as LinkProps
+  if ('href' in rest && rest.href) {
+    const { href, ...anchorRest } = rest
     if (isExternal(href)) {
       return (
-        <a
-          href={href}
-          rel="noopener noreferrer"
-          target="_blank"
-          className={classes(variant, size, className)}
-          {...rest}
-        >
+        <a {...anchorRest} href={href} rel="noopener noreferrer" target="_blank" className={cls}>
           {children}
         </a>
       )
     }
     return (
-      <Link href={href} className={classes(variant, size, className)} {...rest}>
+      <Link {...anchorRest} href={href} className={cls}>
         {children}
       </Link>
     )
   }
 
-  const { ...rest } = props as NativeButtonProps
   return (
-    <button className={classes(variant, size, className)} {...rest}>
+    <button {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)} className={cls}>
       {children}
     </button>
   )

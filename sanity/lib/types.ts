@@ -49,11 +49,34 @@ export type NavChildLink = { label: string; href: string }
 export type NavLink = { label: string; href?: string; children?: NavChildLink[] }
 export type FooterColumn = { heading: string; links?: NavChildLink[] }
 
+export type SocialPlatform =
+  | 'google'
+  | 'twitter'
+  | 'instagram'
+  | 'linkedin'
+  | 'facebook'
+  | 'youtube'
+  | 'tiktok'
+  | 'apple'
+  | 'googleplay'
+
+export type FooterSocialLink = { platform: SocialPlatform; href: string; label?: string }
+
+export type FooterSocial = {
+  heading?: string
+  body?: string
+  email?: string
+  links?: FooterSocialLink[]
+}
+
 export type SiteSettings = {
   siteName: string
-  logo?: SanityImageRef | null
+  logoHeader?: SanityImageRef | null
+  logoFooter?: SanityImageRef | null
   navLinks?: NavLink[]
   headerCta: CtaValue
+  headerSecondaryCta?: CtaValue
+  footerSocial?: FooterSocial
   footerColumns?: FooterColumn[]
   footerNote?: string
   organization?: {
@@ -61,5 +84,19 @@ export type SiteSettings = {
     url: string
     logoUrl?: string
     sameAs?: string[]
+    address?: {
+      streetAddress?: string
+      postalCode?: string
+      addressLocality?: string
+      addressRegion?: string
+      addressCountry?: string
+    }
+    contactPoint?: {
+      email?: string
+      telephone?: string
+      contactType?: string
+      areaServed?: string[]
+      availableLanguage?: string[]
+    }
   }
 }

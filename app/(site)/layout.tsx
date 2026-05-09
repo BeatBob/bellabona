@@ -11,7 +11,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
   return (
     <>
       <Navigation settings={settings} />
-      <main id="main" className="flex-1">
+      <main id="main" className="flex-1 pt-[72px] sm:pt-[88px]">
         {children}
       </main>
       <Footer settings={settings} />
