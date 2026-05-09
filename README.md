@@ -4,6 +4,12 @@ Next.js 16 (App Router) + Sanity v3 + Tailwind v4. Sized to the 4–6 hr brief: 
 
 > **Live:** https://bellabona-sable.vercel.app/
 
+### PageSpeed Insights
+
+| Desktop | Mobile |
+|---|---|
+| ![Desktop PageSpeed result](public/pagespeed%20result/pagespeed.web.dev%20-%20desktop.png) | ![Mobile PageSpeed result](public/pagespeed%20result/pagespeed.web.dev%20-%20mobile.png) |
+
 ## Setup
 
 ```bash
