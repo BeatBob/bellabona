@@ -7,7 +7,10 @@
   --color-brand-lime: #e6ffa9;
   --color-brand-cream: #f4efe0;
   --color-brand-cream-2: #f9f4dc;
+  --color-brand-stone: #f3f2ef;
   --color-brand-coral: #d14b3f;
+  --color-brand-coral-dark: #8a1e1e;
+  --color-brand-coral-light: #fce5dd;
 
   --color-background: #ffffff;
   --color-foreground: var(--color-brand-dark);

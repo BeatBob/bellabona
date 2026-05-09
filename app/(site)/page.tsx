@@ -2,9 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Script from 'next/script'
 
+import { CtaBanner } from '../../components/sections/CtaBanner'
+import { Faqs } from '../../components/sections/Faqs'
 import { Features } from '../../components/sections/Features'
 import { Hero } from '../../components/sections/Hero'
 import { LogoBar } from '../../components/sections/LogoBar'
+import { Meals } from '../../components/sections/Meals'
+import { Stats } from '../../components/sections/Stats'
+import { Steps } from '../../components/sections/Steps'
+import { Testimonial } from '../../components/sections/Testimonial'
 import { getHomepage, getSiteSettings } from '../../lib/data'
 import { FALLBACK_SITE_SETTINGS } from '../../lib/fallback'
 import { DEFAULT_LOCALE, LOCALES, localeUrl } from '../../lib/i18n'
@@ -71,7 +77,26 @@ export default async function HomePage() {
         <EmptyState message="Publish the Homepage document in /studio to render the hero." />
       )}
       {homepage?.logoBar?.logos?.length ? <LogoBar data={homepage.logoBar} /> : null}
-      {homepage?.features?.items?.length ? <Features data={homepage.features} /> : null}
+      {homepage?.stats?.items?.length ? <Stats data={homepage.stats} /> : null}
+      {homepage?.meals?.heading && homepage.meals.items?.length ? (
+        <Meals data={homepage.meals} />
+      ) : null}
+      {homepage?.features?.cards?.length || homepage?.features?.benefits?.length ? (
+        <Features data={homepage.features!} />
+      ) : null}
+      {homepage?.ctaBanner?.heading ? <CtaBanner data={homepage.ctaBanner} /> : null}
+      {homepage?.steps?.heading && homepage.steps.items?.length ? (
+        <Steps data={homepage.steps} />
+      ) : null}
+      {homepage?.testimonial?.heading && homepage.testimonial.quote ? (
+        <Testimonial data={homepage.testimonial} />
+      ) : null}
+      {homepage?.ctaBannerSecondary?.heading ? (
+        <CtaBanner data={homepage.ctaBannerSecondary} variant="green" />
+      ) : null}
+      {homepage?.faqs?.heading && homepage.faqs.items?.length ? (
+        <Faqs data={homepage.faqs} />
+      ) : null}
     </>
   )
 }

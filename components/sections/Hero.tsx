@@ -12,13 +12,20 @@ export function Hero({ data }: Props) {
   return (
     <Section spacing="default">
       <div className="grid items-stretch gap-6 lg:grid-cols-2">
-        <div className="flex flex-col justify-between rounded-3xl bg-brand-green p-8 text-brand-cream sm:p-12">
-          <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl text-balance">
+        <div className="flex flex-col justify-between rounded-3xl bg-brand-green p-8 text-brand-lime sm:p-12">
+          <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl text-balance text-brand-lime">
             {headline}
           </h1>
-          <div className="mt-8 space-y-6 text-base sm:text-lg text-brand-cream/90">
+          <div className="mt-8 space-y-6 text-base text-brand-lime sm:text-lg">
             <PortableText value={subheadline} />
-            {cta ? <CtaLink cta={cta} variant="secondary" size="lg" /> : null}
+            {cta ? (
+              <CtaLink
+                cta={cta}
+                variant="secondary"
+                size="lg"
+                className="w-full rounded-full! border-transparent bg-brand-lime text-brand-green hover:bg-brand-lime/90 hover:text-brand-green sm:w-auto"
+              />
+            ) : null}
           </div>
         </div>
 

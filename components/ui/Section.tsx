@@ -16,8 +16,8 @@ const tones = {
 }
 
 const spacings = {
-  tight: 'py-8 sm:py-10',
-  default: 'py-12 sm:py-20 lg:py-28',
+  tight: 'pb-8 sm:pb-10',
+  default: 'pb-12 sm:pb-20 lg:pb-28',
 }
 
 export function Section({
@@ -31,7 +31,7 @@ export function Section({
 }: Props) {
   return (
     <Tag className={`${tones[tone]} ${spacings[spacing]} ${className}`} {...rest}>
-      <div className={`mx-auto w-full max-w-[1280px] px-6 sm:px-12 ${containerClassName}`}>
+      <div className={`mx-auto w-full max-w-[1440px] px-4 sm:px-10 ${containerClassName}`}>
         {children}
       </div>
     </Tag>

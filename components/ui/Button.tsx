@@ -5,7 +5,7 @@ type Variant = 'primary' | 'secondary' | 'tertiary'
 type Size = 'md' | 'lg'
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-semibold transition-[background,color,box-shadow,transform] duration-150 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-green focus-visible:ring-offset-brand-cream disabled:opacity-60 disabled:cursor-not-allowed'
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold transition-[background,color,box-shadow,transform] duration-150 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-green focus-visible:ring-offset-brand-cream disabled:opacity-60 disabled:cursor-not-allowed'
 
 const variants: Record<Variant, string> = {
   primary:

@@ -20,22 +20,87 @@ export type HomepageHero = {
 
 export type HomepageLogo = { name: string; logo: SanityImageRef }
 
-export type HomepageFeatureItem = {
+export type HomepageFeatureCard = {
+  value: string
   title: string
-  description: string
+  description?: string
+}
+
+export type HomepageFeatureBenefit = {
   icon: SanityImageRef
+  title: string
+  description?: string
+}
+
+export type HomepageStatItem = { value: string; label: string }
+
+export type HomepageCtaBanner = {
+  heading: string
+  description?: string
+  cta: CtaValue
+  image?: SanityImageRef | null
+}
+
+export type HomepageFaqItem = { question: string; answer: string }
+
+export type HomepageFaqs = {
+  heading: string
+  items?: HomepageFaqItem[]
+}
+
+export type HomepageMealItem = {
+  tag: string
+  title: string
+  ratingPercent?: string
+  reviewCount?: string
+  image?: SanityImageRef | null
+}
+
+export type HomepageMeals = {
+  heading: string
+  items?: HomepageMealItem[]
+  cta?: CtaValue
+}
+
+export type HomepageStep = {
+  label: string
+  title: string
+  description?: string
+  image: SanityImageRef
+}
+
+export type HomepageSteps = {
+  heading: string
+  items?: HomepageStep[]
+  cta?: CtaValue
+}
+
+export type HomepageTestimonial = {
+  heading: string
+  leftImage?: SanityImageRef | null
+  quote: string
+  authorName?: string
+  authorTitle?: string
+  rightImage?: SanityImageRef | null
 }
 
 export type HomepageData = {
   hero: HomepageHero
   logoBar?: { eyebrow?: string; logos?: HomepageLogo[] }
-  features?: { heading?: string; subheading?: string; items?: HomepageFeatureItem[] }
-  finalCta?: {
-    heading: string
-    body?: string
-    cta: CtaValue
-    backgroundImage?: SanityImageRef | null
+  stats?: { items?: HomepageStatItem[] }
+  ctaBanner?: HomepageCtaBanner
+  features?: {
+    heading?: string
+    subheading?: string
+    cards?: HomepageFeatureCard[]
+    image?: SanityImageRef | null
+    benefits?: HomepageFeatureBenefit[]
   }
+  testimonial?: HomepageTestimonial
+  ctaBannerSecondary?: HomepageCtaBanner
+  steps?: HomepageSteps
+  meals?: HomepageMeals
+  faqs?: HomepageFaqs
   seo?: {
     metaTitle?: string
     metaDescription?: string

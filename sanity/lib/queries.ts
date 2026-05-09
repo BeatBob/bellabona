@@ -19,20 +19,64 @@ export const homepageQuery = groq`
         logo${imageProjection}
       }
     },
+    stats{
+      items[]{ value, label }
+    },
     features{
       heading,
       subheading,
-      items[]{
+      cards[]{ value, title, description },
+      image${imageProjection},
+      benefits[]{
         title,
         description,
         icon${imageProjection}
       }
     },
-    finalCta{
+    ctaBanner{
       heading,
-      body,
+      description,
       cta,
-      backgroundImage${imageProjection}
+      image${imageProjection}
+    },
+    meals{
+      heading,
+      cta,
+      items[]{
+        tag,
+        title,
+        ratingPercent,
+        reviewCount,
+        image${imageProjection}
+      }
+    },
+    steps{
+      heading,
+      cta,
+      items[]{
+        label,
+        title,
+        description,
+        image${imageProjection}
+      }
+    },
+    testimonial{
+      heading,
+      leftImage${imageProjection},
+      quote,
+      authorName,
+      authorTitle,
+      rightImage${imageProjection}
+    },
+    ctaBannerSecondary{
+      heading,
+      description,
+      cta,
+      image${imageProjection}
+    },
+    faqs{
+      heading,
+      items[]{ question, answer }
     },
     seo{
       metaTitle,

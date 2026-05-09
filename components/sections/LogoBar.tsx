@@ -9,23 +9,21 @@ export function LogoBar({ data }: Props) {
   if (!logos?.length) return null
 
   return (
-    <Section spacing="tight">
-      <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
+    <Section spacing="default">
+      <div className="mx-auto flex w-full max-w-[1040px] flex-col items-center justify-center gap-10 sm:flex-row sm:gap-20">
         {eyebrow ? (
-          <p className="text-sm font-medium uppercase tracking-wider text-brand-dark/70">
-            {eyebrow}
-          </p>
+          <p className="text-lg text-brand-dark/80 sm:text-xl">{eyebrow}</p>
         ) : null}
-        <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-70">
+        <ul className="flex flex-wrap items-center justify-center gap-x-14 gap-y-6 opacity-70">
           {logos.map((item) => (
             <li key={item.name} className="grayscale">
               <SanityImage
                 image={item.logo}
-                width={120}
-                height={32}
-                sizes="120px"
+                width={180}
+                height={48}
+                sizes="180px"
                 alt={`${item.name} logo`}
-                className="h-7 w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
             </li>
           ))}
