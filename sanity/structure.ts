@@ -15,7 +15,6 @@ export const structure: StructureResolver = (S) =>
         .id('siteSettings')
         .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
       S.divider(),
-      // Show any other (future) document types automatically; hide singletons.
       ...S.documentTypeListItems().filter(
         (item) => !SINGLETONS.includes(item.getId() as (typeof SINGLETONS)[number]),
       ),

@@ -4,13 +4,11 @@ export const homepage = defineType({
   name: 'homepage',
   title: 'Homepage',
   type: 'document',
-  // Singleton — surfaced via the Studio structure builder, not via "create new".
   groups: [
     { name: 'content', title: 'Content', default: true },
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
-    // ── Hero ────────────────────────────────────────────────────────────────
     defineField({
       name: 'hero',
       title: 'Hero',
@@ -53,7 +51,6 @@ export const homepage = defineType({
       ],
     }),
 
-    // ── Logo bar ────────────────────────────────────────────────────────────
     defineField({
       name: 'logoBar',
       title: 'Logo bar',
@@ -91,7 +88,6 @@ export const homepage = defineType({
       ],
     }),
 
-    // ── Features ────────────────────────────────────────────────────────────
     defineField({
       name: 'features',
       title: 'Features',
@@ -137,7 +133,6 @@ export const homepage = defineType({
       ],
     }),
 
-    // ── Final CTA ───────────────────────────────────────────────────────────
     defineField({
       name: 'finalCta',
       title: 'Final CTA',
@@ -160,7 +155,6 @@ export const homepage = defineType({
       ],
     }),
 
-    // ── SEO ─────────────────────────────────────────────────────────────────
     defineField({
       name: 'seo',
       title: 'SEO',

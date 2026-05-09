@@ -1,12 +1,6 @@
 'use client'
 
-/**
- * Embedded Sanity Studio at /studio.
- * The Studio uses browser-only APIs, so this whole route is client-rendered.
- * Metadata/viewport exports live in layout.tsx (server) — they can't sit on a
- * 'use client' file.
- */
-
+// Studio needs browser APIs; metadata/viewport exports live in layout.tsx.
 import { NextStudio } from 'next-sanity/studio'
 
 import config from '../../../sanity.config'

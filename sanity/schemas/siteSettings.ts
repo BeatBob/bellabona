@@ -4,7 +4,6 @@ export const siteSettings = defineType({
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
-  // Singleton — chrome shared across every page (nav, footer, organization data).
   groups: [
     { name: 'identity', title: 'Identity', default: true },
     { name: 'navigation', title: 'Navigation' },
@@ -12,7 +11,6 @@ export const siteSettings = defineType({
     { name: 'organization', title: 'Organization (JSON-LD)' },
   ],
   fields: [
-    // ── Identity ────────────────────────────────────────────────────────────
     defineField({
       name: 'siteName',
       title: 'Site name',
@@ -27,7 +25,6 @@ export const siteSettings = defineType({
       group: 'identity',
     }),
 
-    // ── Navigation ──────────────────────────────────────────────────────────
     defineField({
       name: 'navLinks',
       title: 'Header navigation',
@@ -47,9 +44,46 @@ export const siteSettings = defineType({
               name: 'href',
               title: 'Link',
               type: 'string',
-              validation: (Rule) => Rule.required(),
+              description:
+                'The link this label points to. If "Children" is set, this acts as the dropdown trigger and may be left empty.',
+            }),
+            defineField({
+              name: 'children',
+              title: 'Dropdown items (optional)',
+              type: 'array',
+              description:
+                'If set, this nav item becomes a dropdown trigger and these are the items inside it.',
+              of: [
+                defineArrayMember({
+                  type: 'object',
+                  fields: [
+                    defineField({
+                      name: 'label',
+                      title: 'Label',
+                      type: 'string',
+                      validation: (Rule) => Rule.required(),
+                    }),
+                    defineField({
+                      name: 'href',
+                      title: 'Link',
+                      type: 'string',
+                      validation: (Rule) => Rule.required(),
+                    }),
+                  ],
+                }),
+              ],
             }),
           ],
+          preview: {
+            select: { title: 'label', subtitle: 'href', children: 'children' },
+            prepare: ({ title, subtitle, children }) => ({
+              title,
+              subtitle:
+                children && children.length
+                  ? `${children.length} dropdown item${children.length === 1 ? '' : 's'}`
+                  : subtitle,
+            }),
+          },
         }),
       ],
     }),
@@ -60,7 +94,6 @@ export const siteSettings = defineType({
       group: 'navigation',
     }),
 
-    // ── Footer ──────────────────────────────────────────────────────────────
     defineField({
       name: 'footerColumns',
       title: 'Footer columns',
@@ -112,7 +145,6 @@ export const siteSettings = defineType({
       group: 'footer',
     }),
 
-    // ── Organization (drives JSON-LD) ──────────────────────────────────────
     defineField({
       name: 'organization',
       title: 'Organization',
