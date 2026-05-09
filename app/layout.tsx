@@ -1,9 +1,14 @@
+import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { Inter, Manrope } from 'next/font/google'
 
 import './globals.css'
 
-import { DEFAULT_LOCALE } from '../lib/i18n'
+import { DEFAULT_LOCALE, SITE_URL } from '../lib/i18n'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+}
 
 const inter = Inter({
   variable: '--font-inter',

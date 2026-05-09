@@ -41,3 +41,18 @@ export function organizationJsonLd(settings: SiteSettings) {
     ...(contactPoint ? { contactPoint } : {}),
   }
 }
+
+export function faqJsonLd(items: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((i) => ({
+      '@type': 'Question',
+      name: i.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: i.answer,
+      },
+    })),
+  }
+}

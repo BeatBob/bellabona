@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Script from 'next/script'
 
 import { CtaBanner } from '../../components/sections/CtaBanner'
 import { Faqs } from '../../components/sections/Faqs'
@@ -14,7 +13,7 @@ import { Testimonial } from '../../components/sections/Testimonial'
 import { getHomepage, getSiteSettings } from '../../lib/data'
 import { FALLBACK_SITE_SETTINGS } from '../../lib/fallback'
 import { DEFAULT_LOCALE, LOCALES, localeUrl } from '../../lib/i18n'
-import { organizationJsonLd } from '../../lib/jsonld'
+import { faqJsonLd, organizationJsonLd } from '../../lib/jsonld'
 import { urlFor } from '../../sanity/lib/image'
 
 export const revalidate = 3600
@@ -61,15 +60,23 @@ export default async function HomePage() {
   const settings = settingsData ?? FALLBACK_SITE_SETTINGS
 
   const jsonLd = organizationJsonLd(settings)
+  const faqLd =
+    homepage?.faqs?.heading && homepage.faqs.items?.length
+      ? faqJsonLd(homepage.faqs.items)
+      : null
 
   return (
     <>
-      <Script
-        id="organization-jsonld"
+      <script
         type="application/ld+json"
-        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      ) : null}
 
       {homepage?.hero ? (
         <Hero data={homepage.hero} />

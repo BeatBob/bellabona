@@ -17,7 +17,12 @@ export function Meals({ data }: Props) {
           </h2>
 
           {/* Mobile: horizontal scroll, hidden scrollbar */}
-          <div className="mt-10 flex gap-4 overflow-x-auto px-4 pb-2 sm:mt-14 sm:px-10 md:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div
+            role="region"
+            aria-label={heading}
+            tabIndex={0}
+            className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mt-14 sm:px-10 md:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          >
             {items.map((item, i) => (
               <div key={i} className="w-[80%] flex-shrink-0 snap-start">
                 <MealCard item={item} />
